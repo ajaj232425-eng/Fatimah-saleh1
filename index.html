@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>حاسبة عمر الطفل</title>
+
+<style>
+body {
+    font-family: "Tahoma", Arial;
+    text-align: center;
+    direction: rtl;
+    margin: 0;
+    min-height: 100vh;
+
+    /* خلفية تموجات ملونة */
+    background: linear-gradient(-45deg, #c77dff, #ffafcc, #90dbf4, #b8c0ff);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+}
+
+/* الترويسة */
+.header {
+    background: white;
+    padding: 10px;
+    border-bottom: 3px solid #0a7c66;
+}
+
+.header img {
+    width: 70px;
+    vertical-align: middle;
+}
+
+.header-text {
+    display: inline-block;
+    text-align: right;
+    margin-right: 10px;
+    font-size: 16px;
+    color: #0a7c66;
+    font-weight: bold;
+}
+
+/* زخارف */
+.decor {
+    font-size: 38px;
+    margin-top: 8px;
+}
+
+.container {
+    background: white;
+    padding: 25px;
+    margin: 25px auto;
+    width: 340px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+h1 {
+    color: #d63384;
+}
+
+.subtitle {
+    color: #555;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 90%;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+button {
+    background-color: #d63384;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ad2168;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    background: #f0fbff;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.footer {
+    margin-top: 25px;
+    font-size: 14px;
+    color: #333;
+    padding: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- الترويسة -->
+<div class="header">
+    <img src="https://upload.wikimedia.org/wikipedia/ar/thumb/0/02/Ministry_of_Education_Saudi_Arabia_Logo.svg/512px-Ministry_of_Education_Saudi_Arabia_Logo.svg.png">
+    <div class="header-text">
+        وزارة التعليم<br>
+        الإدارة العامة للتعليم بمنطقة نجران
+    </div>
+</div>
+
+<div class="decor">🌸 🌼 🌺 🎈</div>
+
+<div class="container">
+<h1>🌟 حاسبة عمر الطفل 🌟</h1>
+<div class="subtitle">مرحلة رياض الأطفال</div>
+
+<input type="text" id="childName" placeholder="اسم الطفل">
+<br>
+<input type="date" id="birthDate">
+<br><br>
+
+<button onclick="calculateAge()">احسبي العمر</button>
+
+<div class="result" id="result"></div>
+
+<div class="footer">
+🌼 مديرة الروضة ومصممة الموقع 🌼<br>
+<strong>فاطمه صالح ال بحري</strong>
+</div>
+</div>
+
+<script>
+function calculateAge() {
+    const name = document.getElementById("childName").value;
+    const birthDate = new Date(document.getElementById("birthDate").value);
+    const today = new Date();
+
+    if (!birthDate.getTime()) {
+        document.getElementById("result").innerHTML = "الرجاء إدخال تاريخ ميلاد صحيح";
+        return;
+    }
+
+    let years = today.getFullYear() - birthDate.getFullYear();
+    let months = today.getMonth() - birthDate.getMonth();
+    let days = today.getDate() - birthDate.getDate();
+
+    if (days < 0) {
+        months--;
+        days += 30;
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    document.getElementById("result").innerHTML =
+        `🎈 عمر الطفل <strong>${name}</strong> هو:<br>
+        <strong>${years} سنة و ${months} شهر و ${days} يوم</strong>`;
+}
+</script>
+
+</body>
+</html>
