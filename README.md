@@ -1,162 +1,208 @@
-# Fatimah-saleh1<<!DOCTYPE html>
-<html lang="ar">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>حساب عمر الطفل</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب عمر الطفل - إدارة تعليم نجران</title>
+    <style>
+        /* إعدادات الخط والخلفية */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* صورة خلفية طفل بحقيبة وأزهار مع طبقة حماية للنصوص */
+            background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), 
+                        url('https://img.freepik.com/free-photo/boy-with-backpack-flowers_23-2148210364.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&display=swap" rel="stylesheet">
+        .container {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            width: 90%;
+            max-width: 480px;
+            text-align: center;
+            border-top: 10px solid #1a5e37; /* لون أخضر رسمي */
+        }
 
-<style>
-body{
-font-family:'Cairo',sans-serif;
-text-align:center;
-margin:0;
-color:#fff;
-background: linear-gradient(270deg,#ff9de6,#bfa6ff,#8ed6ff);
-background-size:600% 600%;
-animation: gradientMove 8s ease infinite;
-}
+        /* تنسيق الرأس الجديد */
+        .header {
+            border-bottom: 2px solid #f0f0f0;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+        }
+        .header img { 
+            width: 130px; 
+            margin-bottom: 10px; 
+        }
+        .header h2 { 
+            color: #1a5e37; 
+            margin: 5px 0; 
+            font-size: 1.4em;
+        }
+        .header h3 { 
+            color: #444; 
+            margin: 5px 0; 
+            font-size: 1.1em;
+            font-weight: normal;
+        }
 
-/* تموج الخلفية */
-@keyframes gradientMove{
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
-}
+        h1 {
+            font-size: 1.6em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
 
-/* زخارف أزهار */
-body::before{
-content:"🌸 🌼 🌺 🌸 🌼 🌺";
-font-size:40px;
-position:fixed;
-top:10px;
-left:10px;
-opacity:0.25;
-}
+        .input-group {
+            background: #f9fbf9;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+        }
+        label { 
+            display: block; 
+            margin-bottom: 12px; 
+            font-weight: bold; 
+            color: #333;
+        }
+        input[type="date"] {
+            padding: 12px;
+            width: 85%;
+            border: 2px solid #cbd5e0;
+            border-radius: 10px;
+            font-size: 18px;
+            text-align: center;
+            outline: none;
+        }
 
-/* الترويسة */
-.header{
-background:white;
-color:#6a5acd;
-padding:12px;
-font-size:20px;
-font-weight:bold;
-}
+        .btn-container {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        button {
+            padding: 14px 25px;
+            font-size: 17px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+            font-weight: bold;
+            flex: 1;
+        }
+        .btn-calc { background-color: #27ae60; color: white; }
+        .btn-calc:hover { background-color: #1e8449; }
+        .btn-print { background-color: #2980b9; color: white; }
+        .btn-print:hover { background-color: #1f6391; }
 
-.header img{
-width:60px;
-vertical-align:middle;
-}
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e8f5e9;
+            border-radius: 12px;
+            border-right: 6px solid #27ae60;
+            display: none;
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: #1b5e20;
+        }
 
-.container{
-background:white;
-color:#333;
-margin:40px auto;
-padding:30px;
-border-radius:25px;
-width:50%;
-box-shadow:0 10px 25px rgba(0,0,0,0.2);
-}
+        /* تنسيق التذييل المطلوب */
+        .footer {
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #555;
+            font-size: 1em;
+        }
+        .footer strong {
+            display: block;
+            margin-top: 8px;
+            color: #1a5e37;
+            font-size: 1.1em;
+        }
 
-input,button{
-padding:12px;
-font-size:18px;
-border-radius:12px;
-border:none;
-margin-top:10px;
-}
-
-button{
-background:#ff7ad9;
-color:white;
-cursor:pointer;
-}
-
-button:hover{
-background:#ff4ec7;
-}
-
-.result{
-margin-top:20px;
-font-size:22px;
-color:#6a5acd;
-}
-
-.print-btn{
-background:#6a5acd;
-margin-top:15px;
-}
-
-footer{
-margin-top:40px;
-font-size:18px;
-}
-</style>
+        @media print {
+            body { background: white !important; }
+            .container { box-shadow: none; border: 1px solid #ccc; }
+            button { display: none; }
+        }
+    </style>
 </head>
-
 <body>
 
-<div class="header">
-<img src="https://upload.wikimedia.org/wikipedia/ar/thumb/0/02/Ministry_of_Education_Saudi_Arabia_Logo.svg/512px-Ministry_of_Education_Saudi_Arabia_Logo.svg.png">
-وزارة التعليم – منطقة نجران
-</div>
-
 <div class="container">
-<h2>🎈 حساب عمر الطفل 🎈</h2>
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Ministry_of_Education_Saudi_Arabia_Logo.svg/512px-Ministry_of_Education_Saudi_Arabia_Logo.svg.png" alt="شعار وزارة التعليم">
+        <h2>وزارة التعليم</h2>
+        <h3>إدارة التعليم بنجران</h3>
+    </div>
 
-<input type="date" id="birthdate"><br>
-<button onclick="calculateAge()">احسب العمر</button>
+    <h1>حساب عمر الطفل</h1>
+    
+    <div class="input-group">
+        <label>يرجى اختيار تاريخ ميلاد الطفل:</label>
+        <input type="date" id="birth_date">
+    </div>
 
-<div class="result" id="result"></div>
-<div class="result" id="hijri"></div>
+    <div class="btn-container">
+        <button class="btn-calc" onclick="calculateAge()">عرض النتيجة</button>
+        <button class="btn-print" onclick="window.print()">🖨️ طباعة</button>
+    </div>
 
-<button class="print-btn" onclick="window.print()">🖨️ طباعة النتيجة</button>
+    <div id="result"></div>
+
+    <div class="footer">
+        المديرة ومصممة الموقع:
+        <strong>فاطمه صالح آل بحري</strong>
+    </div>
 </div>
-
-<footer>
-مديره الروضه ومصممه الموقع :<br>
-<strong>فاطمه صالح ال بحري</strong>
-</footer>
-
-<audio id="sound">
-<source src="https://www.soundjay.com/human/sounds/applause-8.mp3">
-</audio>
 
 <script>
-function calculateAge(){
-const birthdate=document.getElementById("birthdate").value;
-if(!birthdate){ alert("اختاري تاريخ الميلاد"); return; }
+    function calculateAge() {
+        const birthValue = document.getElementById('birth_date').value;
+        const resultDiv = document.getElementById('result');
+        
+        if (!birthValue) {
+            alert("فضلاً، اختر تاريخ ميلاد الطفل");
+            return;
+        }
 
-const birth=new Date(birthdate);
-const today=new Date();
+        const birthDate = new Date(birthValue);
+        const today = new Date();
+        
+        let years = today.getFullYear() - birthDate.getFullYear();
+        let months = today.getMonth() - birthDate.getMonth();
 
-let years=today.getFullYear()-birth.getFullYear();
-let months=today.getMonth()-birth.getMonth();
-let days=today.getDate()-birth.getDate();
+        if (months < 0 || (months === 0 && today.getDate() < birthDate.getDate())) {
+            years--;
+            months += 12;
+        }
 
-if(days<0){
-months--;
-days+=30;
-}
-if(months<0){
-years--;
-months+=12;
-}
+        let level = "";
+        if (years < 3) level = "دون سن القبول النظامي";
+        else if (years == 3) level = "المستوى الأول (روضة 1)";
+        else if (years == 4) level = "المستوى الثاني (روضة 2)";
+        else if (years == 5) level = "المستوى الثالث (روضة 3)";
+        else level = "مؤهل للمرحلة الابتدائية";
 
-document.getElementById("result").innerHTML=
-"العمر: "+years+" سنة و "+months+" شهر و "+days+" يوم 🎉";
-
-// التاريخ الهجري
-const hijri=new Intl.DateTimeFormat('ar-SA-u-ca-islamic',{
-day:'numeric',month:'long',year:'numeric'
-}).format(birth);
-
-document.getElementById("hijri").innerHTML=
-"تاريخ الميلاد هجري: "+hijri;
-
-document.getElementById("sound").play();
-}
+        resultDiv.style.display = "block";
+        resultDiv.innerHTML = `
+            <strong>النتيجة المستخلصة:</strong><br>
+            عمر الطفل الآن: ${years} سنوات و ${months} أشهر<br>
+            المرحلة المستحقة: ${level}
+        `;
+    }
 </script>
 
 </body>
